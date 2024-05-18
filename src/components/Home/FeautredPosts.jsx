@@ -1,6 +1,7 @@
 import React from "react";
 import { sortBlogs } from "../../utils";
 import BlogLayoutone from "../Blog/BlogLayoutone";
+import BlogLayoutTwo from "../Blog/BlogLayoutTwo";
 export const FeautredPosts = ({ blogs }) => {
   const sortedBlogs = sortBlogs(blogs);
   return (
@@ -16,10 +17,10 @@ export const FeautredPosts = ({ blogs }) => {
           <BlogLayoutone blog={sortedBlogs[2]} />
         </article>
         <article className="col-span-1 row-span-1 relative">
-          blog layout 2
+          <BlogLayoutTwo blog={sortedBlogs[5]} />
         </article>
         <article className="col-span-1 row-span-1 relative">
-          blog layout 2
+          <BlogLayoutTwo blog={sortedBlogs[4]} />
         </article>
       </div>
     </section>
