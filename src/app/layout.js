@@ -2,6 +2,7 @@ import "./globals.css";
 import { Inter } from "next/font/google";
 import { cx } from "../utils";
 import Header from "../components/Header/Header";
+import Footer from "../components/Footer/Footer";
 
 // Define the Inter font
 const inter = Inter({
@@ -31,6 +32,7 @@ export default function RootLayout({ children }) {
         <Header />
 
         {children}
+        <Footer />
       </body>
     </html>
   );
