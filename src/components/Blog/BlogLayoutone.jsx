@@ -16,8 +16,8 @@ const BlogLayoutone = ({ blog }) => {
         placeholder="blur"
         blurDataURL={blog.image.blurhashDataUrl}
         alt={blog.title}
-        className="w-full h-full object-center object-cover rounded-3xl "
-        sizes="100vw"
+        className="w-30px h-30px object-center object-cover rounded-3xl "
+        sizes=""
         width={blog.image.width}
         height={blog.image.height}
       />
