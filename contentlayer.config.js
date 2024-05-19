@@ -4,9 +4,10 @@ import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypePrettyCode from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
 import remarkGfm from "remark-gfm";
+import GithubSlugger from "github-slugger";
 
 const Blog = defineDocumentType(() => ({
-  name: "Doc",
+  name: "Blog",
   filePathPattern: "**/**/*.mdx",
   contentType: "mdx",
   fields: {
@@ -14,11 +15,11 @@ const Blog = defineDocumentType(() => ({
       type: "string",
       required: true,
     },
-    updatedAt: {
+    publishedAt: {
       type: "date",
       required: true,
     },
-    publishedAt: {
+    updatedAt: {
       type: "date",
       required: true,
     },
@@ -26,10 +27,7 @@ const Blog = defineDocumentType(() => ({
       type: "string",
       required: true,
     },
-    image: {
-      type: "image",
-      required: true,
-    },
+    image: { type: "image" },
     isPublished: {
       type: "boolean",
       default: true,
@@ -51,6 +49,28 @@ const Blog = defineDocumentType(() => ({
     readingTime: {
       type: "json",
       resolve: (doc) => readingTime(doc.body.raw),
+    },
+    toc: {
+      type: "json",
+      resolve: async (doc) => {
+        const regulrExp = /\n(?<flag>#{1,6})\s+(?<content>.+)/g;
+        const slugger = new GithubSlugger();
+        const headings = Array.from(doc.body.raw.matchAll(regulrExp)).map(
+          ({ groups }) => {
+            const flag = groups?.flag;
+            const content = groups?.content;
+
+            return {
+              level:
+                flag?.length == 1 ? "one" : flag?.length == 2 ? "two" : "three",
+              text: content,
+              slug: content ? slugger.slug(content) : undefined,
+            };
+          }
+        );
+
+        return headings;
+      },
     },
   },
 }));
