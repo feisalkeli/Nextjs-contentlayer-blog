@@ -2,10 +2,11 @@ import { allDocs } from "../../../../.contentlayer/generated/index.mjs";
 import Tag from "../../../components/Elements/Tag";
 import Image from "next/image";
 import BlogDetails from "../../../components/Blog/BlogDetails";
+import RenderMdx from "../../../components/Blog/RenderMdx";
 
 export default function BlogPage({ params }) {
-  console.log(`allDocs`, allDocs);
   const blog = allDocs.find((blog) => blog._raw.flattenedPath === params.slug);
+  console.log(`blog`, blog);
   return (
     <article>
       <div className="mb-8 text-center relative w-full h-[70vh] bg-dark">
@@ -33,6 +34,10 @@ export default function BlogPage({ params }) {
         />
       </div>
       <BlogDetails blog={blog} slug={params.slug} />
+      <div className="grid grid-cols-12 gap-16 mt-8 px-10">
+        <div className="col-span-4">Toc</div>
+        <RenderMdx blog={blog} />
+      </div>
     </article>
   );
 }
