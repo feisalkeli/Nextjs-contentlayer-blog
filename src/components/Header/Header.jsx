@@ -2,6 +2,7 @@ import React from "react";
 import Logo from "./Logo";
 import Link from "next/link";
 import { LinkedIn, GithubIcon, TwitterIcon, SunIcon } from "../Icons";
+import siteMetadata from "../../utils/siteMetaData";
 const Header = () => {
   return (
     <header className="w-full p-4 px-10 flex items-center justify-between ">
@@ -15,13 +16,13 @@ const Header = () => {
         </button>
       </nav>
       <div>
-        <a href="" className="w-6 h6 mr-4 inline-block">
+        <a href={siteMetadata.linkedin} className="w-6 h6 mr-4 inline-block">
           <LinkedIn className="hover:scale-125 transition-all ease duration-200" />
         </a>
-        <a href="" className="w-6 h6 mr-4 inline-block">
+        <a href={siteMetadata.github} className="w-6 h6 mr-4 inline-block">
           <GithubIcon className="hover:scale-125 transition-all ease duration-200" />
         </a>
-        <a href="" className="w-6 h6 mr-4 inline-block ">
+        <a href={siteMetadata.github} className="w-6 h6 mr-4 inline-block ">
           <TwitterIcon className="hover:scale-125 transition-all ease duration-200" />
         </a>
       </div>
